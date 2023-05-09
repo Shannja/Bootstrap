@@ -12,13 +12,16 @@ const initializePassport = require("./passport-conf");
 const flash = require("express-flash");
 const session = require("express-session");
 const methodOverride = require("method-override");
+const dbInit = require('./mongoDB');
 
-//? Initializes passport
+//? Initialize
 initializePassport(
     passport,
     email => users.find(user => user.email === email),
     id => users.find(user => user.id === id)
 );
+
+dbInit().catch(console.error);
 
 const users = [];
 
