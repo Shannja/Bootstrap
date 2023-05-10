@@ -25,25 +25,23 @@
               <li class="nav-item">
                 <a class="nav-link" href="#">Link</a>
               </li>
+              <form action="logout?_method=DELETE" method="post">
+                <div class="dropdown" style="margin-left: 3%;">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <h7><%= name %></h7>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><span class="dropdown-item-text">Settings</span></li>
+                    <li><button class="dropdown-item btn btn-outline-danger" type="submit">Logout</button></li>
+                  </ul>
+                </div>
+              </form>
             </ul>
             <form class="d-flex" role="search">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
           </div>
-          <form action="logout?_method=DELETE" method="post">
-            <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <h3><%= name %></h3>
-              <li class="nav-item dropdown">
-                <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></button>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><span class="dropdown-item-text">Settings</span></li>
-                  <li><button class="dropdown-item btn btn-outline-danger" type="submit">Logout</button></li>
-                </ul>
-              </li>
-            </div>
-          </form>
         </div>
       </nav>
     </div>
