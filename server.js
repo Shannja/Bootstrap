@@ -12,7 +12,7 @@ const initializePassport = require("./passport-conf");
 const flash = require("express-flash");
 const session = require("express-session");
 const methodOverride = require("method-override");
-const dbInit = require('./mongoDB');
+const { MongoClient } = require('mongodb');
 
 //? Initialize
 initializePassport(
@@ -20,6 +20,28 @@ initializePassport(
     email => users.find(user => user.email === email),
     id => users.find(user => user.id === id)
 );
+
+async function dbInit() {
+    //? Connecting to mongodb
+    const uri = "mongodb+srv://admin:shanshan2014@nodelogincluster.n1zawsj.mongodb.net/sample_airbnb?retryWrites=true&w=majority"
+    const client = new MongoClient(uri);
+    try {
+        await client.connect();
+        await listDatabases(client);
+    } catch (e) {
+        console.log(e)
+    }
+    finally {
+        await client.close();
+    }
+};
+
+async function listDatabases(client){
+    databasesList = await client.db().admin().listDatabases();
+
+    console.log("Databases:");
+    databasesList.databases.forEach(db => console.log(` - ${db.name}`));
+};
 
 dbInit().catch(console.error);
 
